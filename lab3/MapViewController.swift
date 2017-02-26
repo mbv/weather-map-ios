@@ -33,37 +33,41 @@ class CityAnnotation: NSObject, MKAnnotation {
 
 protocol WeatherReloadAsyncDelegate {
     func reloadWeather()
+    func onError()
 }
 
-class ViewController: UIViewController, WeatherReloadAsyncDelegate {
+class MapViewController: UIViewController, WeatherReloadAsyncDelegate {
     lazy var weatherModel : WeatherModel = WeatherModel(delegate: self)
+    let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
+    
     @IBOutlet weak var mapView: MKMapView!
-    var selectedCityName: String? = nil
     
     internal func reloadWeather() {
         let citiesWeather = weatherModel.weatherCities
-        var cities : [CityAnnotation] = [CityAnnotation]()
         for cityWeather in citiesWeather {
-            let city = CityAnnotation(coordinate: cityWeather.location.coordinate)
-            city.title = cityWeather.cityName
-            city.subtitle = cityWeather.temperature
-            
-            cities.append(city)
-        }
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.addAnnotations(cities)
-        if (selectedCityName != nil) {
-            var city:CityAnnotation? = nil
+            var city : CityAnnotation? = nil
             for _annotation in mapView.annotations {
                 if let annotation = _annotation as? CityAnnotation {
-                    if annotation.title == selectedCityName {
+                    if annotation.id == cityWeather.id {
                         city = annotation
                         break
                     }
                 }
             }
-            mapView.selectAnnotation(city!, animated: false)
+            if city != nil {
+                city?.subtitle = cityWeather.temperature
+            } else {
+                let city = CityAnnotation(coordinate: cityWeather.location.coordinate)
+                city.id = cityWeather.id
+                city.title = cityWeather.cityName
+                city.subtitle = cityWeather.temperature
+                mapView.addAnnotation(city)
+            }
         }
+    }
+    
+    internal func onError() {
+        present(alertController, animated: true, completion: nil)
     }
     
     func startRefreshing() {
@@ -89,12 +93,6 @@ class ViewController: UIViewController, WeatherReloadAsyncDelegate {
             }
             if nearestCity != nil {
                 let cityWeather = nearestCity!
-                /*let city = City(coordinate: cityWeather.location.coordinate)
-                city.title = cityWeather.cityName
-                city.subtitle = cityWeather.temperature
-                mapObject.removeAnnotations(mapObject.annotations)
-                
-                mapObject.addAnnotation(city)*/
                 var city:CityAnnotation? = nil
                 for _annotation in mapView.annotations {
                     if let annotation = _annotation as? CityAnnotation {
@@ -107,7 +105,6 @@ class ViewController: UIViewController, WeatherReloadAsyncDelegate {
                 
                 if city != nil {
                     showCityOnMap(city: city!)
-                    selectedCityName = city?.title
                 }
                 
             }
@@ -125,7 +122,7 @@ class ViewController: UIViewController, WeatherReloadAsyncDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherModel.refresh()
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.startRefreshing), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(MapViewController.startRefreshing), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {

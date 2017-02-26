@@ -7,21 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19389161FD59037D88F6F0DE /* Pods_lab3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE2B870828DDD79E2F54C60 /* Pods_lab3.framework */; };
+		788540F31E62F79800E9DCFE /* CityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788540F21E62F79800E9DCFE /* CityTableViewController.swift */; };
+		788540F71E6364EE00E9DCFE /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788540F61E6364EE00E9DCFE /* DetailWeatherViewController.swift */; };
+		78A8D5C71E620EF100155F43 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D5C61E620EF100155F43 /* WeatherModel.swift */; };
 		78F0981C1E5B80A5004367A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0981B1E5B80A5004367A2 /* AppDelegate.swift */; };
-		78F0981E1E5B80A5004367A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0981D1E5B80A5004367A2 /* ViewController.swift */; };
+		78F0981E1E5B80A5004367A2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0981D1E5B80A5004367A2 /* MapViewController.swift */; };
 		78F098211E5B80A5004367A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F0981F1E5B80A5004367A2 /* Main.storyboard */; };
 		78F098231E5B80A5004367A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F098221E5B80A5004367A2 /* Assets.xcassets */; };
 		78F098261E5B80A5004367A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F098241E5B80A5004367A2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DE2B870828DDD79E2F54C60 /* Pods_lab3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lab3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		788540F21E62F79800E9DCFE /* CityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
+		788540F61E6364EE00E9DCFE /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
+		78A8D5C61E620EF100155F43 /* WeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		78F098181E5B80A5004367A2 /* lab3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0981B1E5B80A5004367A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78F0981D1E5B80A5004367A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		78F0981D1E5B80A5004367A2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		78F098201E5B80A5004367A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78F098221E5B80A5004367A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F098251E5B80A5004367A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78F098271E5B80A5004367A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8169A6D687BEBB16BD020B2 /* Pods-lab3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lab3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lab3/Pods-lab3.debug.xcconfig"; sourceTree = "<group>"; };
+		BA87E2DFC72D99C1FD38DA45 /* Pods-lab3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lab3.release.xcconfig"; path = "Pods/Target Support Files/Pods-lab3/Pods-lab3.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19389161FD59037D88F6F0DE /* Pods_lab3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1126B90135E82E9E5842E627 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8169A6D687BEBB16BD020B2 /* Pods-lab3.debug.xcconfig */,
+				BA87E2DFC72D99C1FD38DA45 /* Pods-lab3.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		78F0980F1E5B80A5004367A2 = {
 			isa = PBXGroup;
 			children = (
 				78F0981A1E5B80A5004367A2 /* lab3 */,
 				78F098191E5B80A5004367A2 /* Products */,
+				1126B90135E82E9E5842E627 /* Pods */,
+				E90FBBB602BF0BC39EA5650C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +76,25 @@
 		78F0981A1E5B80A5004367A2 /* lab3 */ = {
 			isa = PBXGroup;
 			children = (
+				788540F61E6364EE00E9DCFE /* DetailWeatherViewController.swift */,
 				78F0981B1E5B80A5004367A2 /* AppDelegate.swift */,
-				78F0981D1E5B80A5004367A2 /* ViewController.swift */,
+				78F0981D1E5B80A5004367A2 /* MapViewController.swift */,
 				78F0981F1E5B80A5004367A2 /* Main.storyboard */,
 				78F098221E5B80A5004367A2 /* Assets.xcassets */,
 				78F098241E5B80A5004367A2 /* LaunchScreen.storyboard */,
 				78F098271E5B80A5004367A2 /* Info.plist */,
+				78A8D5C61E620EF100155F43 /* WeatherModel.swift */,
+				788540F21E62F79800E9DCFE /* CityTableViewController.swift */,
 			);
 			path = lab3;
+			sourceTree = "<group>";
+		};
+		E90FBBB602BF0BC39EA5650C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DE2B870828DDD79E2F54C60 /* Pods_lab3.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78F0982A1E5B80A5004367A2 /* Build configuration list for PBXNativeTarget "lab3" */;
 			buildPhases = (
+				BEC58CD2001AAE623705AB86 /* [CP] Check Pods Manifest.lock */,
 				78F098141E5B80A5004367A2 /* Sources */,
 				78F098151E5B80A5004367A2 /* Frameworks */,
 				78F098161E5B80A5004367A2 /* Resources */,
+				76C5EEDABC204212F8FFAF8F /* [CP] Embed Pods Frameworks */,
+				BA57E5FED80B141DFD4B1B43 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,12 +168,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		76C5EEDABC204212F8FFAF8F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lab3/Pods-lab3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA57E5FED80B141DFD4B1B43 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lab3/Pods-lab3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEC58CD2001AAE623705AB86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		78F098141E5B80A5004367A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78F0981E1E5B80A5004367A2 /* ViewController.swift in Sources */,
+				788540F71E6364EE00E9DCFE /* DetailWeatherViewController.swift in Sources */,
+				788540F31E62F79800E9DCFE /* CityTableViewController.swift in Sources */,
+				78F0981E1E5B80A5004367A2 /* MapViewController.swift in Sources */,
+				78A8D5C71E620EF100155F43 /* WeatherModel.swift in Sources */,
 				78F0981C1E5B80A5004367A2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,10 +344,12 @@
 		};
 		78F0982B1E5B80A5004367A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8169A6D687BEBB16BD020B2 /* Pods-lab3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9696VR6W2P;
 				INFOPLIST_FILE = lab3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bsuir.lab3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,10 +359,12 @@
 		};
 		78F0982C1E5B80A5004367A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA87E2DFC72D99C1FD38DA45 /* Pods-lab3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9696VR6W2P;
 				INFOPLIST_FILE = lab3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bsuir.lab3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +391,7 @@
 				78F0982C1E5B80A5004367A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

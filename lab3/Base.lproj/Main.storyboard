@@ -1,26 +1,176 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3zu-D6-Ayf">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Map-->
+        <scene sceneID="Z9c-GB-KDf">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QFB-Af-7T1" customClass="MapViewController" customModule="lab3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="XCU-79-DdA"/>
+                        <viewControllerLayoutGuide type="bottom" id="4TM-85-sKS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="y0H-43-7r4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKh-U9-t7G">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HXb-0A-BfT" appends="YES" id="Hqx-kn-e5m"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4TM-85-sKS" firstAttribute="top" secondItem="VKh-U9-t7G" secondAttribute="bottom" id="6g6-r9-nPq"/>
+                            <constraint firstItem="VKh-U9-t7G" firstAttribute="top" secondItem="y0H-43-7r4" secondAttribute="top" id="bfc-sB-P7Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VKh-U9-t7G" secondAttribute="trailing" constant="-16" id="fSX-6t-ohB"/>
+                            <constraint firstItem="VKh-U9-t7G" firstAttribute="leading" secondItem="y0H-43-7r4" secondAttribute="leading" id="mDv-XL-1NK"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="S29-Yo-sez"/>
+                    <connections>
+                        <outlet property="mapView" destination="VKh-U9-t7G" id="lK4-f8-5Y3"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nbp-To-Xy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HXb-0A-BfT">
+                    <connections>
+                        <action selector="longPressMap:" destination="QFB-Af-7T1" id="X8H-jf-LIM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1192.8" y="1259.8200899550227"/>
+        </scene>
+        <!--Cities-->
+        <scene sceneID="liN-Oi-eaq">
+            <objects>
+                <tableViewController id="TQg-6t-Bgv" customClass="CityTableViewController" customModule="lab3" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7GC-D4-DUp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cityWeatherCell" textLabel="fBR-Cv-ulz" detailTextLabel="p8j-Jh-caF" style="IBUITableViewCellStyleValue1" id="agE-nO-YnG">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="agE-nO-YnG" id="33K-m8-8Zq">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fBR-Cv-ulz">
+                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p8j-Jh-caF">
+                                            <rect key="frame" x="296" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="UNp-ZH-Vdp" kind="show" identifier="segueShowDetailWeather" id="eVQ-UC-rke"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TQg-6t-Bgv" id="BhE-CK-oC0"/>
+                            <outlet property="delegate" destination="TQg-6t-Bgv" id="w2k-9j-9EN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Cities" id="yfP-lg-RvY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rHa-O0-x9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="NQ7-Pt-FQC"/>
+            </objects>
+            <point key="canvasLocation" x="2991" y="591"/>
+        </scene>
+        <!--Detail Weather View Controller-->
+        <scene sceneID="UtE-UC-AiH">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="UNp-ZH-Vdp" customClass="DetailWeatherViewController" customModule="lab3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cSI-jN-G52"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fa3-5t-HCD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UgB-dm-rQA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Eb-bf-kXx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Eb-bf-kXx" firstAttribute="top" secondItem="UgB-dm-rQA" secondAttribute="top" id="2g4-az-l7T"/>
+                            <constraint firstAttribute="trailing" secondItem="4Eb-bf-kXx" secondAttribute="trailing" id="8p9-BL-wTd"/>
+                            <constraint firstAttribute="bottom" secondItem="4Eb-bf-kXx" secondAttribute="bottom" id="HJe-43-WxJ"/>
+                            <constraint firstItem="4Eb-bf-kXx" firstAttribute="leading" secondItem="UgB-dm-rQA" secondAttribute="leading" id="rLe-4h-wUC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="4Eb-bf-kXx" id="DWU-gg-Iay"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2f7-l6-lg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3944.8000000000002" y="582.45877061469275"/>
+        </scene>
+        <!--Cities-->
+        <scene sceneID="pVx-vg-C2f">
+            <objects>
+                <navigationController id="IWW-Uu-blD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Cities" image="cities" id="0Cd-Gz-Bqa"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8fA-qh-iHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TQg-6t-Bgv" kind="relationship" relationship="rootViewController" id="g2H-fy-LVg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8S-gy-chb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2038" y="591"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="O9y-aQ-0WH">
+            <objects>
+                <tabBarController id="3zu-D6-Ayf" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="z2P-qM-d3V">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="IWW-Uu-blD" kind="relationship" relationship="viewControllers" id="LX6-C0-EZv"/>
+                        <segue destination="QFB-Af-7T1" kind="relationship" relationship="viewControllers" id="WhV-1G-SFy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8DO-fm-BBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="932"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cities" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
+    </resources>
 </document>
