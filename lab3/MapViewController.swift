@@ -121,8 +121,14 @@ class MapViewController: UIViewController, WeatherReloadAsyncDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setActionForAlertController();
         weatherModel.refresh()
         Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(MapViewController.startRefreshing), userInfo: nil, repeats: true)
+    }
+    
+    private func setActionForAlertController() {
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
     }
 
     override func didReceiveMemoryWarning() {

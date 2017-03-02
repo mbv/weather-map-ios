@@ -19,15 +19,23 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
     
     internal func onError() {
         present(alertController, animated: true, completion: nil)
+        refreshControl?.endRefreshing()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setActionForAlertController()
         weatherModel.refresh()
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(CityTableViewController.startRefresh), for: UIControlEvents.valueChanged)
     }
+    
+    private func setActionForAlertController() {
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+    }
+
     
     func startRefresh() {
         weatherModel.refresh()
