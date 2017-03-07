@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="2038" y="591"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Root View Controller-->
         <scene sceneID="O9y-aQ-0WH">
             <objects>
-                <tabBarController id="3zu-D6-Ayf" sceneMemberID="viewController">
+                <tabBarController id="3zu-D6-Ayf" customClass="RootViewController" customModule="lab3" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="z2P-qM-d3V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

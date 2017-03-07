@@ -8,16 +8,16 @@
 
 import UIKit
 
-class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate  {
-    lazy var weatherModel : WeatherModel = WeatherModel(delegate: self)
+class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate, WeatherModelInjectable  {
+    var weatherModel : WeatherModel?
     let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
 
-    internal func reloadWeather() {
+    func reloadWeather() {
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }
     
-    internal func onError() {
+    func onError() {
         present(alertController, animated: true, completion: nil)
         refreshControl?.endRefreshing()
     }
@@ -25,7 +25,7 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         setActionForAlertController()
-        weatherModel.refresh()
+        weatherModel!.refresh()
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(CityTableViewController.startRefresh), for: UIControlEvents.valueChanged)
@@ -38,17 +38,17 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
 
     
     func startRefresh() {
-        weatherModel.refresh()
+        weatherModel!.refresh()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherModel.weatherCities.count
+        return weatherModel!.weatherCities.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityWeatherCell", for: indexPath)
-        let cityWeather = weatherModel.weatherCities[indexPath.row]
+        let cityWeather = weatherModel!.weatherCities[indexPath.row]
         cell.textLabel?.text = cityWeather.cityName
         cell.detailTextLabel?.text = cityWeather.temperature
 
@@ -59,7 +59,7 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "segueShowDetailWeather") {
             let detailViewController = segue.destination as! DetailWeatherViewController
-            let cityWeather = weatherModel.weatherCities[(self.tableView.indexPathForSelectedRow?.row)!]
+            let cityWeather = weatherModel!.weatherCities[(self.tableView.indexPathForSelectedRow?.row)!]
             let city = CityAnnotation(coordinate: cityWeather.location.coordinate)
             city.title = cityWeather.cityName
             city.subtitle = cityWeather.temperature
@@ -67,5 +67,9 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
         }
     }
  
+    func setWeatherModel(weatherModel: WeatherModel) {
+        self.weatherModel =  weatherModel
+        weatherModel.addReloadDelegate(reloadDelegate: self)
+    }
 
 }

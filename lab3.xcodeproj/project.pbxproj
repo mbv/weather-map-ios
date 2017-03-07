@@ -16,6 +16,7 @@
 		78F098211E5B80A5004367A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F0981F1E5B80A5004367A2 /* Main.storyboard */; };
 		78F098231E5B80A5004367A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78F098221E5B80A5004367A2 /* Assets.xcassets */; };
 		78F098261E5B80A5004367A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78F098241E5B80A5004367A2 /* LaunchScreen.storyboard */; };
+		840A6EE31E6EDA5200473C6B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840A6EE21E6EDA5200473C6B /* RootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		78F098221E5B80A5004367A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78F098251E5B80A5004367A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78F098271E5B80A5004367A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		840A6EE21E6EDA5200473C6B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A8169A6D687BEBB16BD020B2 /* Pods-lab3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lab3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lab3/Pods-lab3.debug.xcconfig"; sourceTree = "<group>"; };
 		BA87E2DFC72D99C1FD38DA45 /* Pods-lab3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lab3.release.xcconfig"; path = "Pods/Target Support Files/Pods-lab3/Pods-lab3.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 				78F0981B1E5B80A5004367A2 /* AppDelegate.swift */,
 				78F0981D1E5B80A5004367A2 /* MapViewController.swift */,
 				78F0981F1E5B80A5004367A2 /* Main.storyboard */,
+				840A6EE21E6EDA5200473C6B /* RootViewController.swift */,
 				78F098221E5B80A5004367A2 /* Assets.xcassets */,
 				78F098241E5B80A5004367A2 /* LaunchScreen.storyboard */,
 				78F098271E5B80A5004367A2 /* Info.plist */,
@@ -223,6 +226,7 @@
 			files = (
 				788540F71E6364EE00E9DCFE /* DetailWeatherViewController.swift in Sources */,
 				788540F31E62F79800E9DCFE /* CityTableViewController.swift in Sources */,
+				840A6EE31E6EDA5200473C6B /* RootViewController.swift in Sources */,
 				78F0981E1E5B80A5004367A2 /* MapViewController.swift in Sources */,
 				78A8D5C71E620EF100155F43 /* WeatherModel.swift in Sources */,
 				78F0981C1E5B80A5004367A2 /* AppDelegate.swift in Sources */,
