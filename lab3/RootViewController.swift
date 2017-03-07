@@ -3,20 +3,20 @@
 //  lab3
 //
 //  Created by Admin on 07.03.17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import UIKit
 
-protocol WeatherModelInjectable {
-    func setWeatherModel(weatherModel : WeatherModel)
-}
-
-class RootViewController: UITabBarController {
+class RootViewController: UITabBarController, ShowErrorDelegate {
 
     let weatherModel : WeatherModel = WeatherModel()
+    let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
+
     
     override func viewDidLoad() {
+        setActionForAlertController()
+        weatherModel.setErrorDelegate(errorDelegate: self)
         injectWeatherModel()
         super.viewDidLoad()
     }
@@ -27,5 +27,14 @@ class RootViewController: UITabBarController {
                 weatherModelInjectable.setWeatherModel(weatherModel: weatherModel)
             }
         }
+    }
+    
+    private func setActionForAlertController() {
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+    }
+    
+    func showError() {
+        present(alertController, animated: true, completion: nil)
     }
 }

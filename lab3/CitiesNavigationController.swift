@@ -3,7 +3,7 @@
 //  lab3
 //
 //  Created by Admin on 07.03.17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import UIKit

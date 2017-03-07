@@ -2,8 +2,8 @@
 //  WeatherModel.swift
 //  lab3
 //
-//  Created by Konstantin Terehov on 2/25/17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Created by user on 2/25/17.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import Foundation
@@ -23,6 +23,7 @@ class WeatherModel {
     
     var weatherCities: [WeatherCity] = [WeatherCity]()
     private var delegates: [WeatherReloadAsyncDelegate] = [WeatherReloadAsyncDelegate]()
+    private var errorDelegate: ShowErrorDelegate?
     
     public func refresh() {
         Alamofire.request(YAHOO_QUERY).validate().responseJSON { response in
@@ -59,6 +60,10 @@ class WeatherModel {
         delegates.append(reloadDelegate)
     }
     
+    public func setErrorDelegate(errorDelegate : ShowErrorDelegate) {
+        self.errorDelegate = errorDelegate
+    }
+    
     private func invokeReloadWeather() {
         for delegate in delegates {
             DispatchQueue.main.async{
@@ -68,11 +73,15 @@ class WeatherModel {
     }
     
     private func invokeOnError() {
+        DispatchQueue.main.async {
+            self.errorDelegate!.showError();
+        }
         for delegate in delegates {
-            DispatchQueue.main.async {
-                delegate.reloadWeather();
+            DispatchQueue.main.async{
+                delegate.onError()
             }
         }
+
     }
     
 }

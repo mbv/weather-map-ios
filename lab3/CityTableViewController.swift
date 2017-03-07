@@ -2,15 +2,14 @@
 //  CityTableViewController.swift
 //  lab3
 //
-//  Created by Konstantin Terehov on 2/26/17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Created by user on 2/26/17.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import UIKit
 
 class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate, WeatherModelInjectable  {
     var weatherModel : WeatherModel?
-    let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
 
     func reloadWeather() {
         self.tableView.reloadData()
@@ -18,22 +17,15 @@ class CityTableViewController: UITableViewController, WeatherReloadAsyncDelegate
     }
     
     func onError() {
-        present(alertController, animated: true, completion: nil)
         refreshControl?.endRefreshing()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setActionForAlertController()
         weatherModel!.refresh()
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(CityTableViewController.startRefresh), for: UIControlEvents.valueChanged)
-    }
-    
-    private func setActionForAlertController() {
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
     }
 
     
