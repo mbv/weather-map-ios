@@ -2,85 +2,62 @@
 //  ViewController.swift
 //  lab3
 //
-//  Created by Konstantin Terehov on 2/20/17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Created by user on 2/20/17.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import UIKit
 import MapKit
 import CoreLocation
 
-class CityAnnotation: NSObject, MKAnnotation {
-    var id: Int?
-    var title: String?
-    var subtitle: String?
-    var latitude: Double
-    var longitude: Double
-    
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
-    init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-    init(coordinate: CLLocationCoordinate2D) {
-        self.latitude = coordinate.latitude
-        self.longitude = coordinate.longitude
-    }
-}
-
-protocol WeatherReloadAsyncDelegate {
-    func reloadWeather()
-    func onError()
-}
-
-class MapViewController: UIViewController, WeatherReloadAsyncDelegate {
-    lazy var weatherModel : WeatherModel = WeatherModel(delegate: self)
-    let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
+class MapViewController: UIViewController, WeatherReloadAsyncDelegate, WeatherModelInjectable {
+    var weatherModel : WeatherModel?
+    private let alertController = UIAlertController(title: "Error", message: "Can't get weather info", preferredStyle: .alert)
     
     @IBOutlet weak var mapView: MKMapView!
     
     internal func reloadWeather() {
-        let citiesWeather = weatherModel.weatherCities
-        for cityWeather in citiesWeather {
-            var city : CityAnnotation? = nil
-            for _annotation in mapView.annotations {
-                if let annotation = _annotation as? CityAnnotation {
-                    if annotation.id == cityWeather.id {
-                        city = annotation
-                        break
+        if mapView != nil {
+            let citiesWeather = weatherModel!.weatherCities
+            for cityWeather in citiesWeather {
+                var city : CityAnnotation? = nil
+                for currentAnnotation in mapView.annotations {
+                    if let annotation = currentAnnotation as? CityAnnotation {
+                        if annotation.id == cityWeather.id {
+                            city = annotation
+                            break
+                        }
                     }
                 }
-            }
-            if city != nil {
-                city?.subtitle = cityWeather.temperature
-            } else {
-                let city = CityAnnotation(coordinate: cityWeather.location.coordinate)
-                city.id = cityWeather.id
-                city.title = cityWeather.cityName
-                city.subtitle = cityWeather.temperature
-                mapView.addAnnotation(city)
+                if city != nil {
+                    city?.subtitle = cityWeather.temperature
+                } else {
+                    let city = CityAnnotation(coordinate: cityWeather.location.coordinate)
+                    city.id = cityWeather.id
+                    city.title = cityWeather.cityName
+                    city.subtitle = cityWeather.temperature
+                    mapView.addAnnotation(city)
+                }
             }
         }
     }
+        
     
     internal func onError() {
-        present(alertController, animated: true, completion: nil)
+        
     }
     
     func startRefreshing() {
-        weatherModel.refresh()
+        weatherModel!.refresh()
     }
 
     @IBAction func longPressMap(_ sender: Any) {
         let longTap = sender as! UILongPressGestureRecognizer
-        if (longTap.state == .ended) {
+        if (longTap.state == .began) {
             let location_point = longTap.location(in: mapView)
             let location = mapView.convert(location_point, toCoordinateFrom: mapView)
             let cllocation = CLLocation(latitude:location.latitude, longitude:location.longitude)
-            let citiesWeather = weatherModel.weatherCities
+            let citiesWeather = weatherModel!.weatherCities
         
             var nearestCity: WeatherCity? = nil
             var nearestCityDistance:CLLocationDistance?
@@ -122,7 +99,7 @@ class MapViewController: UIViewController, WeatherReloadAsyncDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setActionForAlertController();
-        weatherModel.refresh()
+        weatherModel!.refresh()
         Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(MapViewController.startRefreshing), userInfo: nil, repeats: true)
     }
     
@@ -131,11 +108,10 @@ class MapViewController: UIViewController, WeatherReloadAsyncDelegate {
         alertController.addAction(defaultAction)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setWeatherModel(weatherModel: WeatherModel) {
+        self.weatherModel = weatherModel
+        weatherModel.addReloadDelegate(reloadDelegate: self)
     }
-
 
 }
 

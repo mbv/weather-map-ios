@@ -2,8 +2,8 @@
 //  DetailWeatherViewController.swift
 //  lab3
 //
-//  Created by Konstantin Terehov on 2/26/17.
-//  Copyright © 2017 Konstantin Terehov. All rights reserved.
+//  Created by user on 2/26/17.
+//  Copyright © 2017 user. All rights reserved.
 //
 
 import UIKit
